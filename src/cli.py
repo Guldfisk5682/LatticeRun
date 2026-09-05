@@ -234,6 +234,18 @@ def cmd_opd_export(args: argparse.Namespace) -> None:
     print(json.dumps(result))
 
 
+def cmd_runtime_pack_reference(args: argparse.Namespace) -> None:
+    from .runtime import pack_reference_checkpoint
+
+    print(json.dumps(pack_reference_checkpoint(args.source, args.output)))
+
+
+def cmd_runtime_verify_packed(args: argparse.Namespace) -> None:
+    from .runtime import verify_packed_checkpoint
+
+    print(json.dumps(verify_packed_checkpoint(args.packed, source=args.source)))
+
+
 def _add_model_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--model", default=DEFAULT_MODEL_NAME)
     parser.add_argument("--model-adapter")
@@ -354,6 +366,17 @@ def build_parser() -> argparse.ArgumentParser:
     export.add_argument("--output", required=True)
     export.add_argument("--max-shard-bytes", type=int, default=3_500_000_000)
     export.set_defaults(func=cmd_opd_export)
+
+    runtime = commands.add_parser("runtime")
+    runtime_commands = runtime.add_subparsers(required=True)
+    pack_reference = runtime_commands.add_parser("pack-reference")
+    pack_reference.add_argument("--source", required=True)
+    pack_reference.add_argument("--output", required=True)
+    pack_reference.set_defaults(func=cmd_runtime_pack_reference)
+    verify_packed = runtime_commands.add_parser("verify-packed")
+    verify_packed.add_argument("--packed", required=True)
+    verify_packed.add_argument("--source")
+    verify_packed.set_defaults(func=cmd_runtime_verify_packed)
     return parser
 
 

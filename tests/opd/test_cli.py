@@ -81,12 +81,10 @@ def test_reference_export_requires_an_explicit_destination():
     assert args.max_shard_bytes == 3_500_000_000
 
 
-def test_experiment_and_runtime_commands_are_not_on_main():
+def test_experiment_commands_are_not_part_of_the_framework_cli():
     parser = build_parser()
     with pytest.raises(SystemExit):
         parser.parse_args(["eval", "preflight"])
-    with pytest.raises(SystemExit):
-        parser.parse_args(["runtime", "verify-packed"])
 
 
 def test_rollout_prompt_explicitly_enables_thinking():

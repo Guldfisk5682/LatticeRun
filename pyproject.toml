@@ -10,6 +10,7 @@ readme = "README.md"
 license = "Apache-2.0"
 requires-python = ">=3.11"
 dependencies = [
+  "numpy>=1.26",
   "safetensors>=0.5",
   "torch>=2.5",
   "transformers>=5.8,<6",
@@ -36,6 +37,7 @@ packages = [
   "latticerun.quant",
   "latticerun.adapters",
   "latticerun.opd",
+  "latticerun.runtime",
 ]
 
 [tool.setuptools.package-dir]
@@ -44,6 +46,7 @@ latticerun = "src"
 "latticerun.quant" = "src/quant"
 "latticerun.adapters" = "src/adapters"
 "latticerun.opd" = "src/opd"
+"latticerun.runtime" = "src/runtime"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

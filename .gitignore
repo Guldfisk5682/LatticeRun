@@ -1,0 +1,30 @@
+# Model and experiment assets
+.local/
+models/
+checkpoints/
+datasets/
+artifacts/
+runs/
+results/
+
+# Python and build outputs
+.venv/
+.venv-vllm/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.litellm_cache/
+build/
+dist/
+*.egg-info/
+
+# Local tooling and secrets
+.env
+.env.*
+!.env.example
+.DS_Store
+.idea/
+.vscode/

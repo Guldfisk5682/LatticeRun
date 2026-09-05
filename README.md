@@ -6,7 +6,7 @@ LatticeRun is an open-source framework for low-bit quantization, capability
 recovery, and efficient deployment of large language models. It separates
 model-specific structure from reusable compression and distillation logic.
 
-The intended path is:
+The workflow is:
 
 ```text
 BF16 model
@@ -18,12 +18,11 @@ BF16 model
   -> packed low-bit runtime
 ```
 
-The framework currently provides symmetric groupwise quantization, AWQ-style
+The framework provides symmetric groupwise quantization, AWQ-style
 activation-aware clipping, weight-MSE clipping, block-output sensitivity,
 merge-consistent STE recovery, exact full-vocabulary forward KL, global valid
 completion-token reduction, resumable training, and auditable codes-and-scales
-exports. Qwen3.8-27B dense is the default reference model. Native packed-weight
-execution is the next active subsystem and is not yet part of `main`.
+exports. Qwen3.8-27B dense is the default reference model.
 
 ## Getting Started
 
@@ -64,8 +63,7 @@ latticerun opd export \
 
 Rollouts that reach the configured token ceiling without EOS are discarded.
 The final export merges the recovery adapter, requantizes the effective
-weights, and stores signed codes with FP32 scales. It is an auditable handoff
-format, not a claim of native low-VRAM execution.
+weights, and stores signed codes with FP32 scales for packed-runtime loading.
 
 ## Related Projects
 
@@ -76,5 +74,4 @@ format, not a claim of native low-VRAM execution.
 ## Citation
 
 If LatticeRun is useful in your research, cite the repository and the exact
-commit used for your experiments. A formal citation record will be added with
-the first stable release.
+commit used for your experiments.

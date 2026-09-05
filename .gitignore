@@ -22,6 +22,7 @@ dist/
 *.egg-info/
 
 # Local tooling and secrets
+.agent/
 .env
 .env.*
 !.env.example
